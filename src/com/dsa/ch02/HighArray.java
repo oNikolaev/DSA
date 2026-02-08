@@ -47,6 +47,11 @@ public class HighArray {
 		}
 	}
 	
-	
+	public void display() {
+		for (int j=0; j<nElems; j++) {
+			System.out.print(a[j] + " ");
+			System.out.println("");
+		}
+	}
 	
 }
