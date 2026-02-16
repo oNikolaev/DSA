@@ -1,6 +1,7 @@
 package com.dsa.ch02;
 
 public class OrdArray {
+	
 	private long[] a;
 	private int nElems;
 	
@@ -23,14 +24,14 @@ public class OrdArray {
 			curIn = (lowerBound + upperBound) / 2;
 			
 			if (a[curIn] == searchKey)
-				return curIn;
+				return curIn; // Элемент найден
 			else if (lowerBound > upperBound)
-				return nElems;
+				return nElems; // Элемент не найден
 			else {
 				if (a[curIn] < searchKey)
-					lowerBound = curIn + 1;
+					lowerBound = curIn + 1; // В верхней половине
 				else
-					upperBound = curIn - 1;
+					upperBound = curIn - 1; // В нижней половине
 			}
 		}
 	}
@@ -39,15 +40,39 @@ public class OrdArray {
 		
 		int j;
 		
-		for (j = 0; j < nElems; j++)
-			if (a[j] < value)
+		for (j = 0; j < nElems; j++) // Определение позиции вставки
+			if (a[j] < value)        // (Линейный поиск)
 				break;
 		
-		for (int k = nElems; k > j; k--) {
+		for (int k = nElems; k > j; k--) { // Перемещение последующих элементов
 			a[k] = a[k-1];
 		}
 		
-		a[j] = value;
-		nElems++;
+		a[j] = value;                       // Вставка
+		nElems++;                           // Увеличение размера
+	}
+	
+	public boolean delete(long value) {
+		
+		int j = find(value);
+		
+		if(j == nElems) // Найти не удалось
+			return false;
+		else { // Элемент найден
+			for(int k = j; k < nElems; k++) { // Перемещение последующих элементов
+				a[k] = a[k+1];
+			}
+			
+			nElems--; // Уменьшение размера
+			return true;
+		}
+	}
+	
+	public void display() { // Вывод содержимого массива
+		
+		for (int j = 0; j < nElems; j++) { // Перебор всеъ элементов
+			System.out.print(a[j] + " "); // Вывод текущего элемента
+		}
+		System.out.println();
 	}
 }
