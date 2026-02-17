@@ -28,7 +28,7 @@ public class OrdArray {
 			else if (lowerBound > upperBound)
 				return nElems; // Элемент не найден
 			else {
-				if (a[curIn] < searchKey)
+				if (a[curIn] > searchKey)
 					lowerBound = curIn + 1; // В верхней половине
 				else
 					upperBound = curIn - 1; // В нижней половине
